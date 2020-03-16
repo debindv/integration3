@@ -18,7 +18,7 @@ var contractAbi = [
     "name": "candidatesCount",
     "outputs": [
       {
-        "name": "",
+        "name": "_count",
         "type": "uint256"
       }
     ],

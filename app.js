@@ -9,7 +9,7 @@ web3 = new Web3("http://localhost:8545");
 const app = express();
 
 coinbase = "0xaBF85aAba1F5bC11BD16669495a4f82d190236f2";
-var contractAddress = "0x9f80B79A8b4eF1d3a60c949bE6e5F33EF0Bfba88";
+var contractAddress = "0x9Ad6EBf38B171DD043D75AEd335aaf88D25db648";
 var contractAbi = [
 	{
 		"inputs": [],

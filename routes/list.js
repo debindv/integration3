@@ -4,19 +4,20 @@ const path = require('path');
 
 
 
+var count;
 router.get('/', (req,res) => {
-   
-  for (var i = 1 ; i < 3; i++){
- 
-    Election.methods.getCandidate(i)
-      .call({ from: web3.eth.accounts[1] }).then((val) => {
-        //console.log(val);
-        val._id = web3.utils.toBN(val._id).toString();
-        console.log(val._id,val._name);
-      });
-    }
+  Election.methods.candidatesCount()
+   .call({ from: coinbase }).then((count) => {
 
-    console.log('hi');
+      for ( var i = 1; i <= count; i++ ) {
+        Election.methods.getCandidate(i)
+          .call({ from: coinbase }).then((val) => {
+            val._id = web3.utils.toBN(val._id).toString();
+            console.log(val._id,val._name);
+          });
+      }
+    });
+  //});
 
     res.sendFile(path.join(__dirname,'../front-end','list.html'));
             

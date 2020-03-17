@@ -6,20 +6,13 @@ const path = require('path');
 
 router.get('/', (req,res) => {
    
-  for (var i =1 ; i<3; i++){
+  for (var i = 1 ; i < 3; i++){
  
     Election.methods.getCandidate(i)
       .call({ from: web3.eth.accounts[1] }).then((val) => {
-        console.log(val);
-        // val._id = web3.utils.toBN(val._id).toString();
-        // val._name = web3.utils.toBN(val._name).toString();
-        // for (var i = 1; i<=val._count; i++) {
-        //   Election.methods.candidates(i)
-        //     .call({ from: coinbase}).then((candidate) => {
-        //       var id = candidate[0];
-        //       var name = candidate[1];
-        //       var voteCount = candidate[2];
-        //     });
+        //console.log(val);
+        val._id = web3.utils.toBN(val._id).toString();
+        console.log(val._id,val._name);
       });
     }
 

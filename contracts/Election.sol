@@ -27,6 +27,11 @@ contract Election {
         addCandidate("Candidate 1");
         addCandidate("Candidate 2");
     }*/
+    function getCandidate (uint _candidateId) public view returns (uint _id, string memory _name, uint _voteCount) {
+        _id = candidates[_candidateId].id;
+        _name = candidates[_candidateId].name;
+        _voteCount = candidates[_candidateId].voteCount;
+    }
     function addCandidate (string memory _name) private { // private because not too be accessible by public interface of contract
         candidatesCount ++;
         candidates[candidatesCount] = Candidate({id: candidatesCount, name: _name, voteCount:0} );

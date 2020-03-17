@@ -10,103 +10,129 @@ const app = express();
 
 coinbase = "0x0746b306b201889498da9c69963f42d5b01f864f";
 var contractAddress = "0xdbc7ff572a0c0697a53e97179a16b8dc9c81427f";
-
 var contractAbi = [
   {
-    "constant": true,
-    "inputs": [],
-    "name": "candidatesCount",
-    "outputs": [
-      {
-        "name": "_count",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "inputs":[],
+    "stateMutability":"nonpayable",
+    "type":"constructor"
   },
   {
-    "constant": true,
-    "inputs": [
+    "inputs":[],
+    "name":"candidate",
+    "outputs":[
       {
-        "name": "",
-        "type": "uint256"
+       "internalType":"string",
+        "name":"",
+        "type":"string"
       }
     ],
-    "name": "candidates",
-    "outputs": [
+    "stateMutability":"view",
+    "type":"function"
+  },
+{
+  "inputs":[
+    {
+      "internalType":"uint256",
+      "name":"",
+      "type":"uint256"
+    }
+  ],
+  "name":"candidates",
+  "outputs":[
+    {
+      "internalType":"uint256",
+      "name":"id",
+      "type":"uint256"
+    },
+    {
+      "internalType":"string",
+      "name":"name",
+      "type":"string"
+    },
+    {
+      "internalType":"uint256",
+      "name":"voteCount",
+      "type":"uint256"
+    }
+  ],
+  "stateMutability":"view",
+  "type":"function"
+},
+{
+  "inputs":[],
+  "name":"candidatesCount",
+  "outputs":[
+    {
+      "internalType":"uint256",
+      "name":"",
+      "type":"uint256"
+    }
+  ],
+  "stateMutability":"view","type":"function"},
+  {
+    "inputs":[
       {
-        "name": "id",
-        "type": "uint256"
+        "internalType":"uint256",
+        "name":"_candidateId",
+        "type":"uint256"
+      }
+    ],
+    "name":"getCandidate",
+    "outputs":[
+      {
+        "internalType":"uint256",
+        "name":"_id",
+        "type":"uint256"
       },
       {
-        "name": "name",
-        "type": "string"
+        "internalType":"string",
+        "name":"_name",
+        "type":"string"
       },
       {
-        "name": "voteCount",
-        "type": "uint256"
+        "internalType":"uint256",
+        "name":"_voteCount",
+        "type":"uint256"
       }
     ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "stateMutability":"view",
+    "type":"function"
   },
   {
-    "constant": true,
-    "inputs": [],
-    "name": "candidate",
-    "outputs": [
+    "inputs":[
       {
-        "name": "",
-        "type": "string"
+        "internalType":"uint256",
+        "name":"_candidateId",
+        "type":"uint256"
       }
     ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "name":"vote",
+    "outputs":[],
+    "stateMutability":"nonpayable",
+    "type":"function"
   },
   {
-    "constant": true,
-    "inputs": [
+    "inputs":[
       {
-        "name": "",
-        "type": "address"
+        "internalType":"address",
+        "name":"",
+        "type":"address"
       }
     ],
-    "name": "voters",
-    "outputs": [
+    "name":"voters",
+    "outputs":[
       {
-        "name": "",
-        "type": "bool"
+        "internalType":"bool",
+        "name":"",
+        "type":"bool"
       }
     ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_candidateId",
-        "type": "uint256"
-      }
-    ],
-    "name": "vote",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
+    "stateMutability":"view",
+    "type":"function"
   }
 ];
+
+
 
 
 Election = new web3.eth.Contract(contractAbi, contractAddress);

@@ -4,7 +4,7 @@ const path = require('path');
 
 
 
-var count;
+
 router.get('/', (req,res) => {
   Election.methods.candidatesCount()
    .call({ from: coinbase }).then((count) => {
@@ -17,14 +17,11 @@ router.get('/', (req,res) => {
           });
       }
     });
-  //});
 
     res.sendFile(path.join(__dirname,'../front-end','list.html'));
             
             //Render Candidate Result
-      // }
-     
-
+    
 });
 
 

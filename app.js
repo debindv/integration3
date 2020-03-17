@@ -8,13 +8,26 @@ web3 = new Web3("http://localhost:8545");
 
 const app = express();
 
-coinbase = "0xaBF85aAba1F5bC11BD16669495a4f82d190236f2";
-var contractAddress = "0x9Ad6EBf38B171DD043D75AEd335aaf88D25db648";
+coinbase = "0x26F4638B52f7c0A41c981893ce3D1a9Ee8Dd109d";
+var contractAddress = "0x7EF12229FB91df6babeB66a365f05D76A5574719";
 var contractAbi = [
 	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_candidateId",
+				"type": "uint256"
+			}
+		],
+		"name": "vote",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"inputs": [],
@@ -98,19 +111,6 @@ var contractAbi = [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_candidateId",
-				"type": "uint256"
-			}
-		],
-		"name": "vote",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{

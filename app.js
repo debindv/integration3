@@ -161,7 +161,7 @@ app.use(express.static('front-end'));
 app.use('/register', require('./routes/register'));
 app.use('/login', require('./routes/login'));
 app.use('/dashboard', require('./routes/dashboard'));
-
+app.use('/list', require('./routes/list'));
 
 
 

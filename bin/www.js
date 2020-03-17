@@ -12,7 +12,7 @@ app.set('port',port);
 var server = http.createServer(app);
 
 
-server.listen(port);
+server.listen(port, console.log('Server running on port 3000'));
 
 function normalizePort(val) {
     var port = parseInt(val, 10);

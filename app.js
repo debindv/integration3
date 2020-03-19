@@ -7,6 +7,7 @@ var Web3 = require("web3");
 web3 = new Web3("http://localhost:8545");
 
 const app = express();
+app.set('view engine','ejs');
 
 coinbase = "0xBfAdD921c2F661B4DB351882b9D7838C0112d687";
 var contractAddress = "0x9b5A86440dB5D4049F393E5e7F649348665c2506";

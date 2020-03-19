@@ -8,8 +8,8 @@ web3 = new Web3("http://localhost:8545");
 
 const app = express();
 
-coinbase = "0x26F4638B52f7c0A41c981893ce3D1a9Ee8Dd109d";
-var contractAddress = "0x7EF12229FB91df6babeB66a365f05D76A5574719";
+coinbase = "0xBfAdD921c2F661B4DB351882b9D7838C0112d687";
+var contractAddress = "0x9b5A86440dB5D4049F393E5e7F649348665c2506";
 var contractAbi = [
 	{
 		"inputs": [],

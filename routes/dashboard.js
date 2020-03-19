@@ -42,12 +42,23 @@ function ensureAuthenticated(req, res, next) {
             });
         }
       });
-     
+  });   
  
- 
+router.post('/', function(req, res, next) {
+  var voteData = req.body.selectpicker;
+  console.log('Candidate voted is : ', voteData);
+  Election.methods.vote(voteData)
+    .send({from: coinbase, gas:6000000}).catch((error) => {
+      console.log(error);
+    }).then(() => {
+      res.redirect('/login');
+    });
+  //res.send('Succesfully Voted');
+  
+});
          
  
-   });
+   
  
  
  

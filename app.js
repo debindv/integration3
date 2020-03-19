@@ -9,26 +9,13 @@ web3 = new Web3("http://localhost:8545");
 const app = express();
 app.set('view engine','ejs');
 
-coinbase = "0xBfAdD921c2F661B4DB351882b9D7838C0112d687";
-var contractAddress = "0x9b5A86440dB5D4049F393E5e7F649348665c2506";
+coinbase = "0xA9DC41FC93D6Ae7346C72fBBFc251CD879c2Ea58";
+var contractAddress = "0x1D215fA0F92d2CFa04Ce94888d709D1317855D59";
 var contractAbi = [
 	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_candidateId",
-				"type": "uint256"
-			}
-		],
-		"name": "vote",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
 	},
 	{
 		"inputs": [],
@@ -112,6 +99,19 @@ var contractAbi = [
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_candidateId",
+				"type": "uint256"
+			}
+		],
+		"name": "vote",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -203,6 +203,7 @@ app.use('/register', require('./routes/register'));
 app.use('/login', require('./routes/login'));
 app.use('/dashboard', require('./routes/dashboard'));
 app.use('/list', require('./routes/list'));
+app.use('/result', require('./routes/result'));
 
 
 

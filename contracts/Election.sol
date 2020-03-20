@@ -11,6 +11,7 @@ contract Election {
     }
     //store accounts that have voted
     mapping(address => bool) public voters;
+    mapping (string => bool) public voted;
     //store candidate
     //fetch candidate
     mapping(uint =>Candidate) public candidates; //mappingis an associative array r a ahsh associativee key value pairs with one another
@@ -19,8 +20,9 @@ contract Election {
     string public candidate;
     //constructor
     constructor () public {
-        addCandidate("Candidate 1");
-        addCandidate("Candidate 2");
+        addCandidate("Asher Jacob Kavumkal");
+        addCandidate("Sandra Ann Sajan");
+        addCandidate("Udaya Shanker M");
     }
     /*function election () public {
         //candidate = "candidate1";//candidate is a state variable and it is accessible inside contract
@@ -36,13 +38,17 @@ contract Election {
         candidatesCount ++;
         candidates[candidatesCount] = Candidate({id: candidatesCount, name: _name, voteCount:0} );
     }
-    function vote (uint _candidateId) public {
+    function vote (uint _candidateId, string memory _mailId) public {
         //user haven't voted before
         //require(!voters[msg.sender],'User have voted before!!');
         //valid candidate
         require(_candidateId > 0 && _candidateId <= candidatesCount,'Invalid candidate');
         voters[msg.sender] = true;
+        voted[_mailId] = true;
         candidates[_candidateId].voteCount ++;
+    }
+    function hasVoted (string memory _mailId) public view returns (bool _voted) {
+        _voted = voted[_mailId];
     }
 }
 //Election.deployed().then(function(instance) { app = instance })

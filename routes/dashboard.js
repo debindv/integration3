@@ -1,4 +1,4 @@
-const express = require('express');;
+const express = require('express');
 const router = express.Router();
 const path = require('path');
  
@@ -23,31 +23,41 @@ function ensureAuthenticated(req, res, next) {
 //router.get('/',ensureAuthenticated, (req,res) => res.sendFile(path.join(__dirname,'../front-end','dashboard.html'))
  
  
-  router.get('/', (req,res) => {
-    Election.methods.candidatesCount()
-     .call({ from: coinbase }).then((count) => {
- 
-        for ( var i = 1; i <= count; i++ ) {
-          Election.methods.getCandidate(i)
-            .call({ from: coinbase }).then((val) => {
-              cid[counter] =  web3.utils.toBN(val._id).toString();
-              cname[counter] = val._name;
-              counter++;
+router.get('/', (req,res) => {
+  //Get Mail ID of the User
+  mailId = "debinptpm@gmail.com";
+  Election.methods.hasVoted(mailId)
+    .call({ from: coinbase}).then((cond) => {
+      if(!cond) {
+        Election.methods.candidatesCount()
+          .call({ from: coinbase }).then((count) => {
+            console.log(coinbase);
+            for ( var i = 1; i <= count; i++ ) {
+              Election.methods.getCandidate(i)
+                .call({ from: coinbase }).then((val) => {
+                  cid[counter] =  web3.utils.toBN(val._id).toString();
+                  cname[counter] = val._name;
+                  counter++;
               //console.log(`data.id = ${cid}  and data.name = ${cname} `);
-              if(counter==count){
+                  if(counter==count){
                 //console.log(`final cid = ${cid}  `);
-                res.render('dashboard', {cid:cid, cname:cname});
-              }
-             
-            });
-        }
-      });
-  });   
+                    res.render('dashboard', {cid:cid, cname:cname});
+                  } 
+              });
+            }
+          });
+      }
+      else {
+        res.send('Already Voted');
+      }
+    });
+});   
  
 router.post('/', function(req, res, next) {
   var voteData = req.body.selectpicker;
   console.log('Candidate voted is : ', voteData);
-  Election.methods.vote(voteData)
+  //Pass Mail ID of the user
+  Election.methods.vote(voteData, 'debinptpm@gmail.com')
     .send({from: coinbase, gas:6000000}).catch((error) => {
       console.log(error);
     }).then(() => {

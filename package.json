@@ -6,7 +6,7 @@
     "start": "node ./bin/www"
   },
   "keywords": [],
-  "author": "",
+  "author": "Asher Debin Joan Uday",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

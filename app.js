@@ -9,8 +9,13 @@ web3 = new Web3("http://localhost:8545");
 const app = express();
 app.set('view engine','ejs');
 
-coinbase = "0xA9DC41FC93D6Ae7346C72fBBFc251CD879c2Ea58";
-var contractAddress = "0x1D215fA0F92d2CFa04Ce94888d709D1317855D59";
+web3.eth.getCoinbase(function (err, account) {
+	if(err === null) {
+		coinbase = account;
+	}
+});
+//coinbase = "0xAe931f503E851C200eAE84691BDb33F5342d973B";
+var contractAddress = "0xBf8aBd3B64c2B5bfaf0Ae99b6543dc92BCF09595";
 var contractAbi = [
 	{
 		"inputs": [],
@@ -104,14 +109,57 @@ var contractAbi = [
 	{
 		"inputs": [
 			{
+				"internalType": "string",
+				"name": "_mailId",
+				"type": "string"
+			}
+		],
+		"name": "hasVoted",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "_voted",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "_candidateId",
 				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_mailId",
+				"type": "string"
 			}
 		],
 		"name": "vote",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"name": "voted",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{

@@ -14,7 +14,6 @@ The following dependencies need to be installed before moving forward
 nodejs
 npm (node package manager)
 Metamask  (extension in your Web browser)
-
 ```
 
 
@@ -24,20 +23,17 @@ First, clone the repository using the command
 
 ```
 git clone https://github.com/debindv/integration3
-
 ```
 After cloning the repository, navigate into the directory and run the following command to install the other dependencies 
 
 ```
 npm install
-
 ```
 
 After installing nodejs and npm, open your terminal and execute the following command
 
 ```
 npm i -g ganache-cli
-
 ```
 
 
@@ -48,7 +44,6 @@ Run ganache with this command
 
 ```
 ganache-cli
-
 ```
 
 Next open Metamask and move to the Localhost:8545 network
@@ -67,7 +62,6 @@ In another terminal, run the command
 
 ```
 npm start
-
 ```
 
 ## Group Members

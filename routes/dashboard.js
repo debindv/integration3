@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const login = require('./login');
  
 // To ensure authentication
  
@@ -25,24 +26,25 @@ function ensureAuthenticated(req, res, next) {
  
 router.get('/', (req,res) => {
   //Get Mail ID of the User
-  mailId = "debinptpm@gmail.com";
+  //console.log(`email in dashboard = ${login.email}`);
+  mailId = login.email;
   Election.methods.hasVoted(mailId)
     .call({ from: coinbase}).then((cond) => {
       if(!cond) {
         Election.methods.candidatesCount()
           .call({ from: coinbase }).then((count) => {
-            console.log(coinbase);
+            //console.log(coinbase);
             for ( var i = 1; i <= count; i++ ) {
               Election.methods.getCandidate(i)
                 .call({ from: coinbase }).then((val) => {
                   cid[counter] =  web3.utils.toBN(val._id).toString();
                   cname[counter] = val._name;
                   counter++;
-              //console.log(`data.id = ${cid}  and data.name = ${cname} `);
+                  //console.log(`data.id = ${cid}  and data.name = ${cname} `);
                   if(counter==count){
-                //console.log(`final cid = ${cid}  `);
+                    //console.log(`final cid = ${cid}  `);
                     res.render('dashboard', {cid:cid, cname:cname});
-                  } 
+                  }
               });
             }
           });
@@ -51,28 +53,26 @@ router.get('/', (req,res) => {
         res.send('Already Voted');
       }
     });
-});   
+});  
  
 router.post('/', function(req, res, next) {
   var voteData = req.body.selectpicker;
-  console.log('Candidate voted is : ', voteData);
-  //Pass Mail ID of the user
-  Election.methods.vote(voteData, 'debinptpm@gmail.com')
+  mailId = login.email;
+  //console.log('Candidate voted is : ', voteData);
+  //Pass Mail ID of the user along with voting Data
+  Election.methods.vote(voteData, mailId)
     .send({from: coinbase, gas:6000000}).catch((error) => {
       console.log(error);
     }).then(() => {
       res.redirect('/login');
     });
   //res.send('Succesfully Voted');
-  
+ 
 });
-         
- 
-   
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
 module.exports = router;

@@ -14,7 +14,7 @@ contract Election {
     mapping (string => bool) public voted;
     //store candidate
     //fetch candidate
-    mapping(uint =>Candidate) public candidates; //mappingis an associative array r a ahsh associativee key value pairs with one another
+    mapping(uint =>Candidate) public candidates; //mapping is an associative array r a hash associative key value pairs with one another
     //store candidates Count
     uint public candidatesCount;
     string public candidate;
@@ -24,11 +24,6 @@ contract Election {
         addCandidate("Sandra Ann Sajan");
         addCandidate("Udaya Shanker M");
     }
-    /*function election () public {
-        //candidate = "candidate1";//candidate is a state variable and it is accessible inside contract
-        addCandidate("Candidate 1");
-        addCandidate("Candidate 2");
-    }*/
     function getCandidate (uint _candidateId) public view returns (uint _id, string memory _name, uint _voteCount) {
         _id = candidates[_candidateId].id;
         _name = candidates[_candidateId].name;

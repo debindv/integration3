@@ -33,7 +33,7 @@ router.get('/', (req,res) => {
       if(!cond) {
         Election.methods.candidatesCount()
           .call({ from: coinbase }).then((count) => {
-            //console.log(coinbase);
+            console.log(coinbase);
             for ( var i = 1; i <= count; i++ ) {
               Election.methods.getCandidate(i)
                 .call({ from: coinbase }).then((val) => {

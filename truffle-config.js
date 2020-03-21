@@ -9,7 +9,7 @@ module.exports = {
         gas: 6000000
       },
       // develop: {
-      //   port: 8545
+      //   port: 7545
       // }
     }
   };

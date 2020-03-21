@@ -36,6 +36,7 @@ contract Election {
     function vote (uint _candidateId, string memory _mailId) public {
         //user haven't voted before
         //require(!voters[msg.sender],'User have voted before!!');
+        require(!voted[_mailId], 'User have voted before!!');
         //valid candidate
         require(_candidateId > 0 && _candidateId <= candidatesCount,'Invalid candidate');
         voters[msg.sender] = true;

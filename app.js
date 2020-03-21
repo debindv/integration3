@@ -14,8 +14,8 @@ web3.eth.getCoinbase(function (err, account) {
 		coinbase = account;
 	}
 });
-//coinbase = "0xAe931f503E851C200eAE84691BDb33F5342d973B";
-var contractAddress = "0x3Efc9a709b3a582657365f8C6036062eA4e57AFB";
+//coinbase = "0x9A8Bc6378253702e3Da5a96Cf467e89dEEb9bFE8";
+var contractAddress = "0xCaD99A83e4F5738017a1eF477Aa790bf55c8256F";
 var contractAbi = [
 	{
 		"inputs": [],
@@ -246,6 +246,4 @@ app.use('/result', require('./routes/result'));
 
 module.exports = app;
 
-// const PORT = process.env.PORT || 5000;
 
-// app.listen(PORT, console.log(`Server started on port ${PORT}`));

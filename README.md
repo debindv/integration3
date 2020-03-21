@@ -14,6 +14,8 @@ The following dependencies need to be installed before moving forward
 nodejs
 npm (node package manager)
 Metamask  (extension in your Web browser)
+web3js
+ganache-cli
 ```
 
 
@@ -51,7 +53,8 @@ Next open Metamask and move to the Localhost:8545 network
 Then copy one of the private keys shown in your terminal and import an account.
 
 Go to  remix.ethereum.org and paste the smart contract (Election.sol)
-Then compile it and before deploying it, make sure the 'Environment' field has 'Web3 Provider'.
+Then compile it and copy the ABI of the smart contract and paste it in the contractABI field in app.js.
+Before deploying it, make sure the 'Environment' field has 'Web3 Provider'.
 
 Once its deployed, copy the contract address and paste it in app.js next to the variable contractAddress and copy the account address and paste it next to the variable coinbase
 
@@ -63,6 +66,7 @@ In another terminal, run the command
 ```
 npm start
 ```
+When the project is successfully run navigate to localhost:3000 there you will get the projects landing page.
 
 ## Group Members
 

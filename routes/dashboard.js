@@ -50,7 +50,7 @@ router.get('/', (req,res) => {
           });
       }
       else {
-        res.send('Already Voted');
+        res.render('voted');
       }
     });
 });  

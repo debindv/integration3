@@ -19,8 +19,8 @@ contract Election {
     string public candidate;
     //constructor
     constructor () public {
-        addCandidate("Dolan Trump");
-        addCandidate("Narendra Modi");
+        addCandidate("Sandra Ann Sajan");
+        addCandidate("Udaya Shanker M");
         addCandidate("NOTA");
     }
     function getCandidate (uint _candidateId) public view returns (uint _id, string memory _name, uint _voteCount) {

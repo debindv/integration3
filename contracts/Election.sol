@@ -2,7 +2,6 @@ pragma solidity >=0.4.22  <0.7.0;
 
 //declare contract
 contract Election {
-    //creating smoke test
     //model a candidate
     struct Candidate {
         uint id;
@@ -47,5 +46,3 @@ contract Election {
         _voted = voted[_mailId];
     }
 }
-//Election.deployed().then(function(instance) { app = instance })
-//app.vote(1, { from: accounts[0] })

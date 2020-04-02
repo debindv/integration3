@@ -58,7 +58,6 @@ router.get('/', (req,res) => {
 router.post('/', function(req, res, next) {
   var voteData = req.body.selectpicker;
   mailId = login.email;
-  //console.log('Candidate voted is : ', voteData);
   //Pass Mail ID of the user along with voting Data
   Election.methods.vote(voteData, mailId)
     .send({from: coinbase, gas:6000000}).catch((error) => {

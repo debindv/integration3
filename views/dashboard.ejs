@@ -59,9 +59,20 @@
           <h2 class="text-center" style="margin-inline-start: 20px;">Know your candidates</h3>
             <br>
           <div class="container" style="margin-left: 100px;">
+            <% for(var j = 0 ; j < cid.length ; j++) { %>
+              <div class="card" style="width:300px" >
+                <img class="card-img-top" src="https://pngimage.net/wp-content/uploads/2018/06/no-profile-image-png-4.png" alt="Candidate" style="width: 100%" >
+                <div class="card-body">
+                  <h4 class="card-title"><%= cname[j] %></h4>
+                  <!-- <p class="card-text">Currently Working as American President</p> -->
+                  <a href="https://en.wikipedia.org/wiki/Donald_Trump" class="btn btn-primary">See Profile</a>
+                </div>
+              </div>
+              <br>
+          
+       <% } %>
             
-            
-            <div class="card" style="width:400px" >
+            <!-- <div class="card" style="width:400px" >
               <img class="card-img-top" src="https://pmcdeadline2.files.wordpress.com/2019/10/shutterstock_editorial_10434333bm.jpg" alt="Mistred Dolan Trump" style="width: 100%" >
               <div class="card-body">
                 <h4 class="card-title">Mistred Dolan Trump</h4>
@@ -80,7 +91,7 @@
                   <p class="card-text">Currently Working as Indian President</p>
                   <a href="https://en.wikipedia.org/wiki/Narendra_Modi" class="btn btn-primary">See Profile</a>
                 </div>
-              </div>
+              </div> -->
             
           </div>
           
@@ -106,7 +117,7 @@
                         </optgroup>
                     </select>
                     <br>
-                    <input type="submit" value="Submit" style="margin-bottom: 25px;" />
+                    <input type="submit" value="Vote" style="margin-bottom: 25px;" />
                 </form>
      
             </div>

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
 var Web3 = require("web3");
+const flash = require('connect-flash');
 
 web3 = new Web3("http://localhost:8545");
 
@@ -15,7 +16,7 @@ web3.eth.getCoinbase(function (err, account) {
 	}
 });
 //coinbase = "0x9A8Bc6378253702e3Da5a96Cf467e89dEEb9bFE8";
-var contractAddress = "0x5bb4ec9210B58a2e87f7dE937B8970f401c683F5";
+var contractAddress = "0x43E69F80B2bdA71Ac345077D81515b139c81D9F4";
 const contractAbi = require('./contracts/contractAbi');
 
 
@@ -61,7 +62,16 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Connect flash
+app.use(flash());
 
+// Global variables
+app.use(function(req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+});
 
 
 // For static front end
@@ -74,6 +84,7 @@ app.use('/login', require('./routes/login'));
 app.use('/dashboard', require('./routes/dashboard'));
 app.use('/list', require('./routes/list'));
 app.use('/result', require('./routes/result'));
+app.use('/logout', require('./routes/logout'));
 
 
 

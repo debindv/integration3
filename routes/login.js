@@ -4,14 +4,15 @@ const path = require('path');
 const passport = require('passport');
  
  
-router.get('/', (req,res) => res.sendFile(path.join(__dirname,'../front-end','login.html')));
+router.get('/', (req,res) => res.render('login'));
  
 router.post('/',(req, res, next) => {
  
     module.exports.email = req.body.email;
     passport.authenticate('local', {
       successRedirect: '/dashboard',
-      failureRedirect: '/login'
+      failureRedirect: '/login',
+      failureFlash: true
     })(req, res, next);
   });
  

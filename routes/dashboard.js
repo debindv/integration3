@@ -43,6 +43,7 @@ router.get('/', (req,res) => {
                   //console.log(`data.id = ${cid}  and data.name = ${cname} `);
                   if(counter==count){
                     //console.log(`final cid = ${cid}  `);
+                    counter = 0;
                     res.render('dashboard', {cid:cid, cname:cname});
                   }
               });

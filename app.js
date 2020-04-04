@@ -16,7 +16,7 @@ web3.eth.getCoinbase(function (err, account) {
 	}
 });
 //coinbase = "0x9A8Bc6378253702e3Da5a96Cf467e89dEEb9bFE8";
-var contractAddress = "0x2C50b7923db07a6bD5B8F0ceE402F19E6fbFE979";
+var contractAddress = "0xEc281C9286F3B821A2684185e73BB541d0D679dA";
 const contractAbi = require('./contracts/contractAbi');
 
 
@@ -82,7 +82,6 @@ app.use(express.static('front-end'));
 app.use('/register', require('./routes/register'));
 app.use('/login', require('./routes/login'));
 app.use('/dashboard', require('./routes/dashboard'));
-app.use('/list', require('./routes/list'));
 app.use('/result', require('./routes/result'));
 app.use('/logout', require('./routes/logout'));
 

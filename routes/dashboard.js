@@ -64,7 +64,7 @@ router.post('/', function(req, res, next) {
     .send({from: coinbase, gas:6000000}).catch((error) => {
       console.log(error);
     }).then(() => {
-      res.redirect('/login');
+      res.render('success');
     });
   //res.send('Succesfully Voted');
  

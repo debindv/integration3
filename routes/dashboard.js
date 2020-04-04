@@ -24,7 +24,7 @@ function ensureAuthenticated(req, res, next) {
 //router.get('/',ensureAuthenticated, (req,res) => res.sendFile(path.join(__dirname,'../front-end','dashboard.html'))
  
  
-router.get('/', (req,res) => {
+router.get('/', ensureAuthenticated, (req,res) => {
   //Get Mail ID of the User
   //console.log(`email in dashboard = ${login.email}`);
   mailId = login.email;

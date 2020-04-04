@@ -1,17 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
 const passport = require('passport');
  
  
 router.get('/', (req,res) => {
-    req.logout();
+    // req.session.destroy(function (err) {
+    //     res.redirect('/'); 
+    //   });
+    req.logOut();
     req.flash('success_msg', 'You are logged out');
-    res.redirect('/');
+    res.redirect('/login');
+
 });
  
 
  
- 
+
  
 module.exports = router;

@@ -63,7 +63,23 @@ router.post('/', function(req, res, next) {
   var voteData = req.body.selectpicker;
   mailId = login.email;
   var mailHash = crypto.createHash('sha256').update(mailId).digest('hex');
-  console.log(`HASH :${mailHash}`)
+  Email.findOne({ voteData:voteData, mailHash:mailHash }).then(user => {
+    if (user) {
+      const newUser = new User({
+        voteData,
+        mailHash
+      });
+    }
+    else {
+      errors.push({ msg: 'Email details do not match' });
+      res.render('dashboard', {
+      errors,
+      mailHash,
+      voteData
+   });
+  }
+  });
+  //console.log(`HASH :${mailHash}`)
   //Pass Mail ID of the user along with voting Data
   Election.methods.vote(voteData, mailHash)
     .send({from: coinbase, gas:6000000}).catch((error) => {

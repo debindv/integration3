@@ -2,6 +2,7 @@ const express = require('express');
 var crypto = require('crypto');
 const router = express.Router();
 const path = require('path');
+const Email = require('../models/Email');
 const login = require('./login');
  
 // To ensure authentication
@@ -73,6 +74,22 @@ router.post('/', function(req, res, next) {
     });
   //res.send('Succesfully Voted');
  
+  Email.findOne({ voteData:voteData, mailHash:mailHash }).then(user => {
+    if (user) {
+      const newUser = new User({
+        voteData,
+        mailHash
+      });
+    }
+    else {
+      errors.push({ msg: 'Email details do not match' });
+      res.render('dashboard', {
+      errors,
+      mailHash,
+      voteData
+   });
+  }
+  });
 });
 
 

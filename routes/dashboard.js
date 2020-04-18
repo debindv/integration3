@@ -1,4 +1,5 @@
 const express = require('express');
+var crypto = require('crypto');
 const router = express.Router();
 const path = require('path');
 const login = require('./login');
@@ -28,7 +29,8 @@ router.get('/', ensureAuthenticated, (req,res) => {
   //Get Mail ID of the User
   //console.log(`email in dashboard = ${login.email}`);
   mailId = login.email;
-  Election.methods.hasVoted(mailId)
+  var mailHash = crypto.createHash('sha256').update(mailId).digest('hex');
+  Election.methods.hasVoted(mailHash)
     .call({ from: coinbase}).then((cond) => {
       if(!cond) {
         Election.methods.candidatesCount()
@@ -51,20 +53,23 @@ router.get('/', ensureAuthenticated, (req,res) => {
           });
       }
       else {
-        res.render('voted');
+        res.render('voted', {mailHash:mailHash});
       }
     });
 });  
- 
+
+
 router.post('/', function(req, res, next) {
   var voteData = req.body.selectpicker;
   mailId = login.email;
+  var mailHash = crypto.createHash('sha256').update(mailId).digest('hex');
+  console.log(`HASH :${mailHash}`)
   //Pass Mail ID of the user along with voting Data
-  Election.methods.vote(voteData, mailId)
+  Election.methods.vote(voteData, mailHash)
     .send({from: coinbase, gas:6000000}).catch((error) => {
       console.log(error);
     }).then(() => {
-      res.render('success');
+      res.render('success', {mailHash:mailHash});
     });
   //res.send('Succesfully Voted');
  

@@ -20,6 +20,7 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "web3": "^1.0.0-beta.37",
-    "ganache-cli": "^6.4.3"
+    "ganache-cli": "^6.4.3",
+    "crypto-js": "*"
   }
 }

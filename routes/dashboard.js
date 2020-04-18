@@ -63,23 +63,17 @@ router.get('/', ensureAuthenticated, (req,res) => {
 router.post('/', function(req, res, next) {
   var voteData = req.body.selectpicker;
   mailId = login.email;
+  //Converting mailId to its hash value using SHA256
   var mailHash = crypto.createHash('sha256').update(mailId).digest('hex');
-  Email.findOne({ voteData:voteData, mailHash:mailHash }).then(user => {
-    if (user) {
-      const newUser = new User({
-        voteData,
-        mailHash
-      });
-    }
-    else {
-      errors.push({ msg: 'Email details do not match' });
-      res.render('dashboard', {
-      errors,
-      mailHash,
-      voteData
-   });
-  }
-  });
+  //Adding mailHash and Candidate ID to a new collection
+  new Email({
+    mailHash : mailHash,
+    candidateid : voteData
+  }).save((err,doc) => {
+    if (err) throw err;
+    else console.log('Sucess')
+  })
+  
   //console.log(`HASH :${mailHash}`)
   //Pass Mail ID of the user along with voting Data
   Election.methods.vote(voteData, mailHash)
@@ -90,22 +84,6 @@ router.post('/', function(req, res, next) {
     });
   //res.send('Succesfully Voted');
  
-  Email.findOne({ voteData:voteData, mailHash:mailHash }).then(user => {
-    if (user) {
-      const newUser = new User({
-        voteData,
-        mailHash
-      });
-    }
-    else {
-      errors.push({ msg: 'Email details do not match' });
-      res.render('dashboard', {
-      errors,
-      mailHash,
-      voteData
-   });
-  }
-  });
 });
 
 

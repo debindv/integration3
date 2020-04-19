@@ -4,6 +4,7 @@ const passport = require('passport');
 const session = require('express-session');
 var Web3 = require("web3");
 const flash = require('connect-flash');
+const Email = require('./models/Email');
 
 web3 = new Web3("http://localhost:8545");
 
@@ -16,7 +17,7 @@ web3.eth.getCoinbase(function (err, account) {
 	}
 });
 //coinbase = "0x9A8Bc6378253702e3Da5a96Cf467e89dEEb9bFE8";
-var contractAddress = "0xc116A7141e5BF3adf2c882Ddc277011788B042BA";
+var contractAddress = "0x0DaD68DFefFEc83ffb82893c6D07848fd31f13fd";
 const contractAbi = require('./contracts/contractAbi');
 
 
@@ -38,7 +39,10 @@ mongoose
     { useNewUrlParser: true,
       useUnifiedTopology: true }
   )
-  .then(() => console.log('MongoDB Connected'))
+  .then(() => {
+    console.log('MongoDB Connected');
+    Email.deleteMany({}, () => console.log('Verification table cleared'));
+  })
   .catch(err => console.log(err));
 
 

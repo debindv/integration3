@@ -20,6 +20,11 @@
       alert("Copied the text: " + copyText.value);
     }
   </script>
+  <script>
+    if ( window.history.replaceState ) {
+      window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
 </head>
 <body>
 

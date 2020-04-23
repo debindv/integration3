@@ -5,6 +5,9 @@ const session = require('express-session');
 var Web3 = require("web3");
 const flash = require('connect-flash');
 const Email = require('./models/Email');
+var helmet = require('helmet')
+
+app.use(helmet())
 
 web3 = new Web3("http://localhost:8545");
 

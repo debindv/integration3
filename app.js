@@ -7,11 +7,12 @@ const flash = require('connect-flash');
 const Email = require('./models/Email');
 var helmet = require('helmet')
 
-app.use(helmet())
+
 
 web3 = new Web3("http://localhost:8545");
 
 const app = express();
+app.use(helmet());
 app.set('view engine','ejs');
 
 web3.eth.getCoinbase(function (err, account) {

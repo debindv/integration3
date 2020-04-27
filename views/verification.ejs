@@ -83,7 +83,7 @@
               <a class="nav-link" href="/result">Result</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="/result">Verify<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/verification">Verify<span class="sr-only">(current)</span></a>
               </li>   
             <li class="nav-item">
               <a class="nav-link" href="/login">Login</a>
@@ -102,6 +102,8 @@
         <div class="container">
         
             <input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search using hash">
+            <!-- <p class="text-center" >SMART CONTRACT VERIFICATION :</p> -->
+            <!-- <p class="text-center" >https://ropsten.etherscan.io/tx/0x664bef4c7ece971453a532e581cd1a156381a43432b540185cc4252fba033cf5</p> -->
             <table class="table" id="myTable">
                <tr>
                    <th>Hash ID</th>
@@ -109,7 +111,7 @@
                </tr>
             <% data.forEach(function (user) { %>
                 <tr>
-                     <td><%= user.mailHash %></td>
+                     <td><%= user.transactionHash %></td>
                      <td><%= user.candidateid %></td>
                 </tr>
          <% }) %>

@@ -7,7 +7,7 @@ const EmailSchema = new mongoose.Schema({
       type: String,
       required: true
   },
-  mailHash: {
+  transactionHash: {
     type: String,
     required: true
   },

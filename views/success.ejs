@@ -12,7 +12,7 @@
     function myFunction(element) {
       var $temp = $("<input>");
       $("body").append($temp);
-      $temp.val($(element).text()).select();
+      $temp.val($(element).text().trim()).select();
       document.execCommand("copy");
       $temp.remove();
 
@@ -25,9 +25,10 @@
       window.history.replaceState( null, null, window.location.href );
     }
     </script>
+  
 </head>
 <body>
-
+  
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a class="navbar-brand" href="/">De-Mocracy</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +60,8 @@
   <div class="jumbotron">
     <h1 class="text-center">Succesfully Voted</h1>      
     <p class="text-center">Dear Citizen,  you have Succesfully casted your vote. </p>
-    <p class="text-center" >Your Hash ID : <span id="copy"> <%=mailHash%> </span>  </p>
+    <p class="text-center" >Your Transaction Hash ID : <span id="copy"> <%=mailHash%> </span>  </p>
+    <p class="text-center">You can verify your Transaction at https://ropsten.etherscan.io/tx/<%=mailHash%></p>
   </div>    
 </div>
 

@@ -5,8 +5,8 @@ const session = require('express-session');
 var Web3 = require("web3");
 const flash = require('connect-flash');
 const Email = require('./models/Email');
-var helmet = require('helmet')
-
+var helmet = require('helmet');
+const fs = require('fs');
 
 
 web3 = new Web3("http://localhost:8545");
@@ -21,7 +21,7 @@ web3.eth.getCoinbase(function (err, account) {
 	}
 });
 //coinbase = "0x9A8Bc6378253702e3Da5a96Cf467e89dEEb9bFE8";
-var contractAddress = "0x795442f3dF8785E60bbBc3b6d5ea24a893De49C4";
+var contractAddress = "0xfb6d097c6b966655F35C40E792cA66abA05A1905";
 const contractAbi = require('./contracts/contractAbi');
 
 
@@ -46,6 +46,9 @@ mongoose
   .then(() => {
     console.log('MongoDB Connected');
     Email.deleteMany({}, () => console.log('Verification table cleared'));
+    fs.writeFile('Transaction.txt', `ELECTION CONDUCTED ON ${new Date().getTime()}\n`,(err) => {
+      if(err) throw err;
+    })
   })
   .catch(err => console.log(err));
 

@@ -12,7 +12,7 @@
     function myFunction(element) {
       var $temp = $("<input>");
       $("body").append($temp);
-      $temp.val($(element).text()).select();
+      $temp.val($(element).text().trim()).select();
       document.execCommand("copy");
       $temp.remove();
 
@@ -56,7 +56,8 @@
   <div class="jumbotron">
     <h1 class="text-center">Access Denied</h1>      
     <p class="text-center">Dear Citizen,  you have already casted your vote. </p>
-    <p class="text-center" >Your Hash ID : <span id="copy" > <%= mailHash %> </span>  </p>
+    <p class="text-center" >Your Transaction Hash ID : <span id="copy"> <%=mailHash%> </span>  </p>
+    <p class="text-center">You can verify your Transaction at  https://ropsten.etherscan.io/tx/<%=mailHash%></p>
     
   </div>    
 </div>
